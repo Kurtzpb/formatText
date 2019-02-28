@@ -15,6 +15,7 @@ class FileZone extends Component {
                 textDecoration: text.underline ? "underline" : ""
               }}
               key={text.id}
+              data-key={text.id}
             >{`${text.text} `}</span>
           ))}
         </div>

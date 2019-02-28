@@ -11,10 +11,11 @@ class App extends Component {
 
   formatText = format => () => {
     const selectedText = this.getSelectedText();
+    const dataKey = this.getDataKey();
     const { text } = this.state;
 
     const formattedText = text.map(el => {
-      if (el.text === selectedText) {
+      if (el.text === selectedText && el.id === dataKey) {
         return {
           ...el,
           [format]: !el[format]
@@ -33,6 +34,12 @@ class App extends Component {
       .getRangeAt(0)
       .toString()
       .trim();
+  };
+
+  getDataKey = () => {
+    const selectedText = document.getSelection();
+
+    return Number(selectedText.anchorNode.parentNode.getAttribute("data-key"));
   };
 
   async componentDidMount() {
